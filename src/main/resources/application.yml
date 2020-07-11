@@ -1,0 +1,44 @@
+#配置服务器
+server:
+  port: 8888 #请求的端口
+#框架的配置
+spring:
+  #数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/appinfodb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&user=root&password=root&useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc: #配置视图解析器
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/jsps/
+    static-path-pattern:  /static/**
+  resources:
+    static-locations: /static/
+  servlet:
+    multipart:
+      max-file-size: 50000000
+      max-request-size: 50000000
+#mybatis配置
+mybatis:
+  #实体类别名
+  type-aliases-package: com.bdqn.myappinfo.pojo
+  #映射xml地址
+  mapper-locations: classpath:mappers/*.xml
+  #配置项
+  configuration:
+    #级联级别 full为自动级联全部
+    auto-mapping-behavior: full
+
+#日志
+logging:
+  #输出地址
+  pattern:
+    file: myLog.log
+  #日志级别
+  level:
+     #dao层日志 debug
+     cn.bdqn.jykq.management.dao: debug
+mapper:
+  i-d-e-n-t-i-t-y: MYSQL
